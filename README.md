@@ -1,2 +1,16 @@
-## Created vintinder-web using React
- - Created vintinder-web project using vite 
+## vintinder-web 
+ - Created vintinder-web project using vite + React
+ - Install Tailwindcss for vite
+ - Install daisyUI for vite
+ - Created Header and Footer components and added to app.jsx  
+ - Install react-router-dom 
+ - created a BroweseRouter and Routes
+ - Add Outlet to Body components
+ - Install axios 
+ - Install cors in backend => add middleware to with configurations:origin,credentials: true,
+ - Whenever making api call so pass axios => {withCredentials : true}
+ - Install Redux Toolkit => https://redux-toolkit.js.org/tutorials/quick-start  
+ - Install @reduxjs/toolkit   react-redux =>  npm install @reduxjs/toolkit react-redux
+ - Navbar should update as soon as user logs in
+ - Created components folder and add all files to components
+ - Refractor the code to add constant file + create a components folder
