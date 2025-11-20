@@ -22,7 +22,7 @@ const Login = () => {
        console.log(res.data)
        dispatch(addUser(res.data))
        alert("Login Succesfully")
-       navigate("/profile")
+       navigate("/feed")
     } catch (error) {
       console.error(error)
     }

@@ -14,3 +14,5 @@
  - Navbar should update as soon as user logs in
  - Created components folder and add all files to components
  - Refractor the code to add constant file + create a components folder
+ - You Should not access other routes   without login 
+ - If token is not  present,redirect to login page 
