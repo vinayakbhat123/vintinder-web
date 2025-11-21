@@ -18,3 +18,7 @@
  - If token is not  present,redirect to login page 
  - Created logout page feature 
  - Added Error handling feature to login page
+ - Get the feed and added to store 
+ - build usercard
+ - build Edit Profile feature
+ - created Toast feature

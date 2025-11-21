@@ -6,8 +6,8 @@ import { addUser } from '../utils/userSlice';
 import { BASE_URL } from '../utils/constants';
 const Login = () => {
   // State to manage the form inputs
-  const [emailId,setEmailId] = useState("rajubhat@gmail.com");
-  const [password,setPassword] = useState("Raju@123")
+  const [emailId,setEmailId] = useState("abhibhat@gmail.com");
+  const [password,setPassword] = useState("Abhi@123")
   const [error,setError] = useState("");
   const navigate = useNavigate()
   const dispatch = useDispatch()
@@ -25,7 +25,10 @@ const Login = () => {
        dispatch(addUser(res.data))
        navigate("/feed")
     } catch (error) {
-      setError(error?.response?.data)
+      if(status == 400) {
+        console.error("Error occured")
+      }
+      setError(error?.errors?.message)
       
     }
    
@@ -40,11 +43,6 @@ const Login = () => {
           <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
             Login
           </h2>
-          <p className="mt-2 text-center text-sm text-gray-600">
-            Or <a href="#" className="font-medium text-indigo-600 hover:text-indigo-500">
-              create a new account
-            </a>
-          </p>
         </div>
         
         {/* Form */}

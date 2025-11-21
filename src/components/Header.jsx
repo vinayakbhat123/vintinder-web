@@ -18,9 +18,9 @@ const Header = () => {
     }
   }
   return(
-  <div className="navbar bg-base-200 shadow-sm">
+  <div className="navbar bg-base-200 shadow-sm p-10">
   <div className="flex-1">
-    <Link to={"/feed"}className="btn btn-ghost text-xl">VinTinder</Link>
+    <Link to={"/feed"}className="btn btn-ghost text-3xl">VinTinder</Link>
   </div>
   {user && (
   <div className="flex gap-2">
