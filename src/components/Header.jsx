@@ -1,12 +1,26 @@
-import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
+import { BASE_URL } from '../utils/constants';
+import { removeUser } from "../utils/userSlice";
 
 const Header = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const user = useSelector((store) => store.user)
+  const handlelogout = async () => {
+    try {
+      await axios.post(BASE_URL +"/logout", { withCredentials: true})
+      dispatch(removeUser())
+      navigate("/login")
+    } catch (error) {
+      console.error(error)
+    }
+  }
   return(
   <div className="navbar bg-base-200 shadow-sm">
   <div className="flex-1">
-    <Link to={"/"}className="btn btn-ghost text-xl">VinTinder</Link>
+    <Link to={"/feed"}className="btn btn-ghost text-xl">VinTinder</Link>
   </div>
   {user && (
   <div className="flex gap-2">
@@ -29,7 +43,7 @@ const Header = () => {
           </Link>
         </li>
         <li><a>Settings</a></li>
-        <li><a>Logout</a></li>
+        <li><a onClick={handlelogout}>Logout</a></li>
       </ul>
     </div>
   </div> )}

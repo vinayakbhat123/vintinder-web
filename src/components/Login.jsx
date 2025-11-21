@@ -8,8 +8,10 @@ const Login = () => {
   // State to manage the form inputs
   const [emailId,setEmailId] = useState("rajubhat@gmail.com");
   const [password,setPassword] = useState("Raju@123")
+  const [error,setError] = useState("");
   const navigate = useNavigate()
   const dispatch = useDispatch()
+
 
   // Handles form submission
   const handleSubmit = async (e) => {
@@ -21,10 +23,10 @@ const Login = () => {
         { withCredentials: true});
        console.log(res.data)
        dispatch(addUser(res.data))
-       alert("Login Succesfully")
        navigate("/feed")
     } catch (error) {
-      console.error(error)
+      setError(error?.response?.data)
+      
     }
    
   };
@@ -108,6 +110,7 @@ const Login = () => {
 
           {/* Submit Button */}
           <div>
+              <p className='text-red-500 pb-5'>{error}</p>
             <button
               type="submit"
               className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
