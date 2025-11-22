@@ -2,13 +2,22 @@ import axios from 'axios'
 import React, { useEffect } from 'react'
 import { BASE_URL } from '../utils/constants'
 import { useDispatch, useSelector } from 'react-redux'
-import { addRequest } from '../utils/RequestSlice'
+import { addRequest, removeRequest } from '../utils/RequestSlice'
 
 
 const Requests = () => {
   const dispatch = useDispatch();
   const RequestData = useSelector((store) => store.Request)
-  console.log(RequestData)
+  
+  const reviewRequest = async (status,_id) => {
+    try {
+       await axios.post(BASE_URL + "/request/review/" +status + "/" + _id,{},{withCredentials:true})
+       dispatch(removeRequest(_id))
+    } catch (error) {
+      console.error("No Request Found:",error.message)
+    }
+  }
+
   const getRequest = async () => {
     try {
       const res = await axios.get(BASE_URL + "/user/request/received",{withCredentials:true})
@@ -25,9 +34,9 @@ const Requests = () => {
      getRequest()
   },[])
   if(!RequestData){
-    return console.log("No Request found")
+    return <h1 className='bg-base-200 font-bold text-center'>No Request Found</h1>
   }
-  console.log(RequestData);
+  if(RequestData.length === 0) console.error("No data found")
   return (
     <div className='text-center bg-base-200  '>
       <div className='  '>
@@ -56,8 +65,13 @@ const Requests = () => {
           {skills?.length > 3 ? "..." : ""}
         </p>
 
-        <button type='submit' className="inline-block mt-2 text-xs px-3 py-1 rounded-full bg-green-400 text-red-700 font-medium hover:bg-green-500 cursor-pointer">Accepted</button>
-        <button type='submit' className="inline-block mt-2 text-xs px-3 py-1 rounded-full bg-red-400 text-white font-medium hover:bg-red-500 cursor-poi">Rejected</button>
+        <button type='button' 
+        className="inline-block mt-2 text-xs px-3 py-1 rounded-full bg-green-400 text-red-700 font-medium hover:bg-green-500 cursor-pointer" 
+        onClick={() => reviewRequest("accepted",request._id)}>
+          Accepted</button>
+        <button type='button' className="inline-block mt-2 text-xs px-3 py-1 rounded-full bg-red-400 text-white font-medium hover:bg-red-500 cursor-poi"
+        onClick={() => reviewRequest("rejected",request._id)}>
+          Rejected</button>
       </div>
     </div>
   );

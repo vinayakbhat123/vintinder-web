@@ -24,3 +24,4 @@
  - created Toast feature
  - create a connections page
  - create a connection request page
+ - Feature Accept/Reject Connection request
