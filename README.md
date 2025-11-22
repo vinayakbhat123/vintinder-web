@@ -22,3 +22,5 @@
  - build usercard
  - build Edit Profile feature
  - created Toast feature
+ - create a connections page
+ - create a connection request page
