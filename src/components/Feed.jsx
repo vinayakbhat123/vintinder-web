@@ -14,7 +14,7 @@ const Feed = () => {
     try {
       const res = await axios.get(BASE_URL + "/feed",{withCredentials:true})
       dispatch(addFeed(res?.data || res))
-      // console.log(res?.data)
+      console.log(res?.data)
     } catch (error) {
       console.log(error.message)
     }
@@ -23,11 +23,12 @@ const Feed = () => {
   useEffect(() => {
     getFeed();
   },[])
-  return (
-   feedData && <div className=' flex justify-center py-3'>
-      <UserCard user={feedData[0]} />
-    </div> 
-  )
+
+
+  return ( feedData && <div className=' flex justify-center py-3'>
+      <UserCard user={feedData[0]} />,
+    </div>
+  );
 }
 
 export default Feed
