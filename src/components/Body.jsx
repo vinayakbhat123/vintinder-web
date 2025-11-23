@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import Header from './Header'
 import { Outlet, useNavigate } from 'react-router-dom'
 import { BASE_URL } from '../utils/constants';
@@ -11,6 +11,7 @@ const Body = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const userData = useSelector((store) => store.user)
+  
   const fetchUser = async () => {
     try {
       if(userData) return;
@@ -20,7 +21,7 @@ const Body = () => {
       if(error.status === 401){
         navigate("/login")
       }
-      console.error(error);
+      console.error(error?.response?.data)
     }
   } 
   useEffect(() => {

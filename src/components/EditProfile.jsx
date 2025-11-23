@@ -6,8 +6,8 @@ import { useDispatch } from 'react-redux';
 import { addUser } from '../utils/userSlice';
 
 const EditProfile = ({user}) => {
-  const [firstName,setfirstName] = useState(user.firstName);
-  const [lastName,setlastName] = useState(user.lastName);
+  const [firstName,setfirstName] = useState(user.firstName || "");
+  const [lastName,setlastName] = useState(user.lastName || "");
   const [age,setage] = useState(user.age || "");
   const [gender,setgender] = useState(user.gender || "")
   const [about,setabout] = useState(user.about || "")

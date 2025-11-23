@@ -13,7 +13,10 @@ const Connections = () => {
       console.log(res?.data?.data)
       dispatch(addConnection(res?.data?.data))
     }catch (error) {
-       console.error("ERROR",error.message)
+       if(error?.message || error?.response){
+        console.error(error?.message || error?.response?.data)
+       }
+      
   }
   }
   useEffect(() => {

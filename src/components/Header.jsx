@@ -10,11 +10,14 @@ const Header = () => {
   const user = useSelector((store) => store.user)
   const handlelogout = async () => {
     try {
-      await axios.post(BASE_URL +"/logout", { withCredentials: true})
+      await axios.post(BASE_URL +"/logout", {},{ withCredentials: true})
       dispatch(removeUser())
       navigate("/login")
     } catch (error) {
-      console.error(error)
+      if (error?.response) {
+        console.error(error?.response?.data)
+      }
+      console.error(error.message)
     }
   }
   return(
