@@ -25,3 +25,4 @@
  - create a connections page
  - create a connection request page
  - Feature Accept/Reject Connection request
+ - Send Interested/Ignored the user card from the feed

@@ -1,7 +1,24 @@
+import axios from 'axios'
 import React from 'react'
+import { BASE_URL } from '../utils/constants'
+import { useDispatch } from 'react-redux'
+import { removeUserFromFeed } from '../utils/feedSlice'
 
 const UserCard = ({user}) => {
-  const {firstName,lastName,age,gender,skills,about,photoUrl} = user
+  const dispatch = useDispatch();
+  const {_id,firstName,lastName,age,gender,skills,about,photoUrl} = user
+  
+  const handleUserFeed = async (status,userId) => {
+    try {
+      await axios.post(BASE_URL + "/request/send/" +status + "/" +userId,{},{withCredentials:true})
+      dispatch(removeUserFromFeed(userId))
+    } catch (error) {
+      console.error("Error:",error.message)
+      
+    }
+  }
+
+
   return (
     <div className="w-96 bg-white border border-gray-200 rounded-xl shadow-sm overflow-hidden">
       <div className="h-52 w-full overflow-hidden">
@@ -27,10 +44,12 @@ const UserCard = ({user}) => {
    
 
         <div className="flex justify-evenly">
-          <button className="px-4 py-2 bg-blue-600 text-white text-sm rounded-lg hover:bg-blue-700 transition">
+          <button className="px-4 py-2 bg-blue-600 text-white text-sm rounded-lg hover:bg-blue-700 transition"
+          onClick={() => handleUserFeed("ignored",_id)}>
             Ignored
           </button>
-           <button className="px-4 py-2 bg-pink-600 text-white text-sm rounded-lg hover:bg-blue-700 transition">
+           <button className="px-4 py-2 bg-pink-600 text-white text-sm rounded-lg hover:bg-blue-700 transition"
+           onClick={() => handleUserFeed("interested",_id)}>
             Interested
           </button>
         </div>
