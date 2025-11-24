@@ -26,3 +26,37 @@
  - create a connection request page
  - Feature Accept/Reject Connection request
  - Send Interested/Ignored the user card from the feed
+
+
+ # deployment in aws
+ - signup on aws
+ - Launch instance
+ - chmod 400 <secret>.pem
+ - ssh - i "Vintinder-secret.pem " ubuntu@ec2-43-204-96-49.ap-south-1.compute.amazonaws.com
+ - Install node verion manager (v24.8.0)
+ - git clone on ubuntu terminal
+ - Frontend
+    - npm install => dependencies install 
+    - npm run build
+    - sudo apt update
+    - sudo apt install nginx
+    - sudo systemctl start nginx
+    - sudo systemctl enable nginx
+    - copy code from dist(build files) to /var/www/html/
+    - sudo scp -r dist/* /var/www/html/
+    - enable port:80 of you instance =>
+         - security -> security Group => inbound rules -> edit inbound rules
+              - Add rule -> port:80 
+  - Backend
+    - allowed EC2 instances public IP on network access in mongoDB server
+    - Install PM2 for 24*7 server => npm install pm2 -g
+    - start PM2 => pm2  start npm  -- start
+    - pm2 logs 
+    <!-- - clear pm2 logs --> - pm2 flush <name>
+    - pm2 list , pm2 stop <name>, pm2 delete <name>
+    - pm2 start npm --name "newname" -- start  => change name
+    - config nginx =>  sudo nano /etc/nginx/sites-avilabele/default 
+    - => sudo systemctl restart nginx
+     # nginx config
+    - Modify the BASE_URL in frontend project to /api/
+       - git pull in ubuntu server terminal
