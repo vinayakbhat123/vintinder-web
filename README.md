@@ -60,3 +60,48 @@
      # nginx config
     - Modify the BASE_URL in frontend project to /api/
        - git pull in ubuntu server terminal
+
+
+  # adding domain Name
+  - purchase domain from Godaddy or BlueHost or any website
+  - SignUp on cloudflare  & add new domain name
+  - change the name server on Godaddy and point it to cloudaflare 
+  - wait for sometime till your nameservers are updated
+  - DNS - record- VinTinder IP address (run server address) 
+  - Enable SSL for website 
+
+  # AWS SES
+   - SignUp on SES
+   - IAM create a user
+     - addpolicies
+   - SES create an identity 
+   - Verify the domain name
+   - Verify an email address
+   - Install AWS SDK - v3 - 
+   - Setup SesClient 
+   - Access Credentials should be created in IAM under SecurityCredentials Tab
+   - Add the credentials to the file
+   - write code for SESClient 
+   - Write code for Sedning email address
+   - make the email dynamic by passing more params to the run function
+
+   # Scheduling cron jobs in NodeJS
+   - Installing node-cron
+   - Learning about cron expression syntax - crontab.guru
+   - Scheduling a job
+   - date-fns
+   - Find all the unique email Id Who have got connetion Request in Previous day
+   - send Email
+   - Explore queue mechanis to send bulk emails
+   - Amazon SES Bulk Emails
+   - Make sendEmail function 
+   - bee-queue and bull package
+   # Razorpay Payment Gateway Integrations
+    - SignUp in Razorpay & complete KYC 
+    - Create UI for premium page 
+    - creating API for backend Premium
+    - added key and secret key to .env file
+    - creating order on Razorpay
+    - create Schema and model
+    - saved the order in payments collection
+    - making the api dynamic
