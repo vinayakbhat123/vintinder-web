@@ -4,8 +4,10 @@ import { BASE_URL } from '../utils/constants';
 const Premium = () => {
   const handleBuyClick = async (type) => {
     try {
+      console.log("clicked"+type)
       const order = await axios.post(BASE_URL + "/payment/create",{membershipType:type,},{withCredentials:true})
       const {key_id,amount,currency,orderId,notes} = order.data
+      console.log(order.data)
      const options = {
         key: key_id, // Replace with your Razorpay key_id
         amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
@@ -45,7 +47,7 @@ const Premium = () => {
           <li>Blue Tick</li>
           <li>3 Months</li>
         </ul>
-        <button className="bg-red-500 text-white rounded-3xl w-24 shadow-2xl ">Buy Now</button>
+        <button onClick={() => handleBuyClick("silver")} className="bg-red-500 text-white rounded-3xl w-24 shadow-2xl ">Buy Now</button>
        </div>
          <div className="divider divider-horizontal">OR</div>
       <div className="card bg-gray-700 rounded-box grid h-80 grow place-items-center">
