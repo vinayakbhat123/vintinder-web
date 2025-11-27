@@ -4,11 +4,11 @@ import { BASE_URL } from '../utils/constants';
 const Premium = () => {
   const handleBuyClick = async (type) => {
     try {
-      console.log("clicked"+type)
+      // console.log("clicked"+type)
       const order = await axios.post(BASE_URL + "/payment/create",{membershipType:type,},{withCredentials:true})
       const {key_id,amount,currency,orderId,notes} = order.data
-      console.log(order.data)
-     const options = {
+      // console.log(order.data)
+      const options = {
         key: key_id, // Replace with your Razorpay key_id
         amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
         currency,
@@ -24,10 +24,8 @@ const Premium = () => {
           color: '#F37254'
         },
       };
-
-    
-    const rzp = new window.Razorpay(options);
-    rzp.open();
+      const rzp = new window.Razorpay(options);
+      rzp.open();
     } catch (error) {
       console.error("ERROR:"+error.message)
     }
