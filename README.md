@@ -117,3 +117,10 @@
     - create Schema and model
     - saved the order in payments collection
     - making the api dynamic
+    - creating webhooks api and add  webhook in dashboard and created a webhook secret key
+    - Created payment/verify api after it called webshooks ,using handle function
+    - bug fixed successfully
+  
+   # Real time chat using Websockets(Socket.io)
+     - build the UI for a window on /chat/:targetUserId  
+     - npm i socket.io
