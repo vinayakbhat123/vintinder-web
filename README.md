@@ -56,6 +56,18 @@
     - pm2 list , pm2 stop <name>, pm2 delete <name>
     - pm2 start npm --name "newname" -- start  => change name
     - config nginx =>  sudo nano /etc/nginx/sites-avilabele/default 
+    
+    # update and deploy project AWS server
+     - For Backends-
+         - cd devtinder
+         - git pull
+         - pm2 restart 0 
+         - pm2 flush -> To see the logs
+     - For frontend-
+         - cd ../devtinder/web
+         - git pull
+         - npm run build
+         - sudo scp -r dist/* /var/www/html/   -> it will copy the dist folder to var folder 
     - => sudo systemctl restart nginx
      # nginx config
     - Modify the BASE_URL in frontend project to /api/
