@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { useParams } from "react-router-dom";
+import axios from "axios"
 import {useSelector} from "react-redux"
 import { useEffect } from "react";
 import {createSocketConnection} from "../utils/socket"
+import { BASE_URL } from "../utils/constants";
 const Chat = () => {
   const {toUserId} = useParams();
   const [Messages,setMessages] = useState([])
@@ -11,7 +13,29 @@ const Chat = () => {
   const userId = user?._id;
   const firstName = user?.firstName;
 
-  
+  const fetchChatMessages = async () => {
+    try {
+      const chat = await axios.get(BASE_URL + "/chat/" + toUserId,{withCredentials:true})
+      console.log(chat?.data?.messages)
+      const chatMessages = chat?.data?.messages.map((msg) => {
+        const {senderId,text} = msg;
+        return{
+          firstName:senderId?.firstName,
+          lastName:senderId?.lastName,
+          text:text
+        }
+      });
+      setMessages(chatMessages)
+    } catch (error) {
+      console.error(error)
+      
+    }
+  }
+
+  useEffect(() => {
+    fetchChatMessages()
+  },[])
+
   useEffect(() => {
     if(!userId){
       return 
@@ -57,7 +81,7 @@ const Chat = () => {
       <div className="flex-1 overflow-scroll p-5 ">
         {Messages.map((msg,index) => {
           return(<div key={index}>
-            <div className="chat chat-start">
+            <div className={"chat " + (user.firstName === msg.firstName ? "chat-end" : "chat-start")}>
               <div className="chat-image avatar">
                  <div className="w-10 rounded-full">
                    <img
@@ -67,7 +91,7 @@ const Chat = () => {
                  </div>
                </div>
                <div className="chat-header">
-               {msg.firstName}
+               {msg.firstName + " " +msg.lastName}
                <time className="text-xs opacity-50">12:45</time>
                </div>
               <div className="chat-bubble">{msg.text}</div>
