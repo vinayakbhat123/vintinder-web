@@ -123,4 +123,8 @@
   
    # Real time chat using Websockets(Socket.io)
      - build the UI for a window on /chat/:targetUserId  
-     - npm i socket.io
+     - npm i socket.io -> In Backend
+     - npm i socket.io-client -> In FrontEnd
+       - create socket connection and joinchat event is emmited and socket.disconnect()
+       - create socket rooms and create a secret hash auth for security
+      

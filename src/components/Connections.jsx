@@ -88,7 +88,7 @@ const Connections = () => {
             </div>
 
             {/* CTA */}
-          <Link to={"/chat/"+ _id}><button 
+          <Link to={`/chat/${_id}`}><button 
             className="bg-red-600 hover:bg-red-700 px-5 py-2 rounded-xl text-white text-sm font-semibold shadow-sm transition-all duration-200">
               Chat
             </button></Link>   

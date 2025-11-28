@@ -19,7 +19,7 @@ function App() {
          <Route path="/connections" element={<Connections/>}/>
          <Route path="/requests" element={<Requests/>} />
          <Route path="/premium" element={<Premium/>} />
-         <Route path="/chat/:touserId" element={<Chat/>} />
+         <Route path="/chat/:toUserId" element={<Chat/>} />
         </Route>
       </Routes>
       </BrowserRouter>
