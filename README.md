@@ -127,4 +127,14 @@
      - npm i socket.io-client -> In FrontEnd
        - create socket connection and joinchat event is emmited and socket.disconnect()
        - create socket rooms and create a secret hash auth for security
+       - Setup frontend socket.io-client 
+       - Initialise the chat
+       - createSocketConnection
+       - Listnen to events
+       - Homework:improve the UI
+       - Homework:Fix the Security Bug - auth in sockets
+       - Homework:Fix the bug- If I'm not friend,then I should not able to send message
+       - Homework: Feature -> green Symbol when online???- [last  seen 2 hours ago]
+       - Homework:Limit the messages while fetching chats from DB
+       - Project Ideas:Tic,tac and toe game, chess game,typecar race game
       
